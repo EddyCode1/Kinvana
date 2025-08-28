@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h = "http://xmlns.jcp.org/jsf/html"
+        xmlns:f = "http://xmlns.jcp.org/jsf/core"
+        xmlns:p = "http://primefaces.org/ui">
+    <h:head>
+        <title>Kinvana 2024505</title>
+        <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/themes/primeone-dark.css"/>
+
+    </h:head>
+    <h:body>
+        <h1>Hola mundo</h1>
+
+        <p>Hola mundo, estoy en server faces, desde Spring Boot</p>
+
+        <div class="card">
+            <h:form id="formulario-clientes">
+                <!--Mensaje emergente -->
+                <p:growl id="mensaje_emergente" showDetails="true"/>
+
+                <div class="card">
+                    <p:menubar>
+                        <p:menuitem value="Inicio" icon="pi pi-fw pi-user"
+                                    update=":formulario-clientes:tabla-clientes"
+                                    actionListener="#{indexController.cargarDatos}"/>
+                        <p:menuitem value="Nuevo cliente" icon="pi pi-fw pi-plus"
+                                    actionListener="#{indexController.agregarCliente}"
+                                    update="formulario-modal:ventana-cliente"
+                                    oncomplete="PF('VentaModaCliente).show()"/>
+                    </p:menubar>
+                </div>
+                <!-- Tabla de datos -->
+                <div class="card">
+                    <p:dataTable value="#{indexController.clientes}" var="cliente" id="tabla-clientes" widgetVar="tablaClientes">
+
+                        <!-- Encabezado -->
+                        <f:facet name="header">
+                            <div class="flex justify-content-center flex-wrap card-container yellow-container">
+                                <div class="flex align-items-center
+                                            justify-content-center
+                                            w-20rem h-4rem
+                                            bg-yellow-500 font-bold
+                                            text-gray-900 border-round m-2">
+                                    <h3>Kinvana, clientes</h3>
+                                </div>
+                            </div>
+                        </f:facet>
+                            <p:column headerText="ID">
+                                <h:outputText vale="#{cliente.codigoCliente}"/>
+
+                            </p:column>
+
+                            <p:column headerText="Nombre">
+                                <h:outputText vale="#{cliente.nombre}"/>
+                            </p:column>
+
+                        <p:column headerText="Apellido">
+                            <h:outputText vale="#{cliente.apellido}"/>
+                        </p:column>
+                        <p:column headerText="Telefono">
+                            <h:outputText vale="#{cliente.telefono  }"/>
+                        </p:column>
+                        <p:column headerText="Correo">
+                            <h:outputText vale="#{cliente.correo}"/>
+                        </p:column>
+                        <p:column headerText="Genero">
+                            <h:outputText vale="#{cliente.genero}"/>
+                        </p:column>
+                        <p:column headerText="Edad">
+                            <h:outputText vale="#{cliente.edad}"/>
+                        </p:column>
+
+                        <p:column headerText="OPCION">
+                            <p:commandButton value="Editar" icon="pi pi-pencil" class="ui-button-primary">
+                            </p:commandButton>
+                            <p:commandButton value="Eliminar" icon="pi pi-trash" class="ui-button-danger">
+                            </p:commandButton>
+                        </p:column>
+
+                        <!-- Todas las columnas -->
+                    </p:dataTable>
+                </div>
+            </h:form>
+            <h:form id="formulario-modal">
+                <p:outputPanel header="Detalle del Cliente" showEffect="fade"
+                    modal="true" widgetVar="VentaModaCliente" responsive="true">
+                    <p:outputPanel id="ventana-cliente" class="ui-fluid">
+                        <div class="field">
+                            <p:outputLabel for="nombre">NOMBRE</p:outputLabel>
+                            <p:imputText id="nombre" requerid="true"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="apellido">PELLIDO</p:outputLabel>
+                            <p:imputText id="apellido"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="telefono">TELEFONO</p:outputLabel>
+                            <p:imputText id="telefono" />
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="correo">CORREO</p:outputLabel>
+                            <p:imputText id="correo" requerid="true"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="genero">GENERO</p:outputLabel>
+                            <p:imputText id="genero"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="edad">EDAD</p:outputLabel>
+                            <p:imputText id="edad"/>
+                        </div>
+                    </p:outputPanel>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Guardar" icon="pi pi-check" class="ui-button-primary"/>
+                        <p:commandButton value="Cancelar" icon="pi pi-times" class="ui-button-secondary"
+                                    oneClick="PF('VentaModaCliente')"/>
+                    </f:facet>
+                </p:dialog>
+            </h:form>
+        </div>
+    </h:body>
+</h:html>
