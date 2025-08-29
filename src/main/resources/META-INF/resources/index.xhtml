@@ -47,28 +47,27 @@
                             </div>
                         </f:facet>
                             <p:column headerText="ID">
-                                <h:outputText vale="#{cliente.codigoCliente}"/>
-
+                                <h:outputText value="#{cliente.codigoCliente}"/>
                             </p:column>
 
                             <p:column headerText="Nombre">
-                                <h:outputText vale="#{cliente.nombre}"/>
+                                <h:outputText value="#{cliente.nombre}"/>
                             </p:column>
 
                         <p:column headerText="Apellido">
-                            <h:outputText vale="#{cliente.apellido}"/>
+                            <h:outputText value="#{cliente.apellido}"/>
                         </p:column>
                         <p:column headerText="Telefono">
-                            <h:outputText vale="#{cliente.telefono  }"/>
+                            <h:outputText value="#{cliente.telefono  }"/>
                         </p:column>
                         <p:column headerText="Correo">
-                            <h:outputText vale="#{cliente.correo}"/>
+                            <h:outputText value="#{cliente.correo}"/>
                         </p:column>
                         <p:column headerText="Genero">
-                            <h:outputText vale="#{cliente.genero}"/>
+                            <h:outputText value="#{cliente.genero}"/>
                         </p:column>
                         <p:column headerText="Edad">
-                            <h:outputText vale="#{cliente.edad}"/>
+                            <h:outputText value="#{cliente.edad}"/>
                         </p:column>
 
                         <p:column headerText="OPCION">
@@ -77,45 +76,45 @@
                             <p:commandButton value="Eliminar" icon="pi pi-trash" class="ui-button-danger">
                             </p:commandButton>
                         </p:column>
-
                         <!-- Todas las columnas -->
                     </p:dataTable>
                 </div>
             </h:form>
+
             <h:form id="formulario-modal">
-                <p:outputPanel header="Detalle del Cliente" showEffect="fade"
+                <p:dialog header="Detalle del Cliente" showEffect="fade"
                     modal="true" widgetVar="VentaModaCliente" responsive="true">
                     <p:outputPanel id="ventana-cliente" class="ui-fluid">
                         <div class="field">
                             <p:outputLabel for="nombre">NOMBRE</p:outputLabel>
-                            <p:imputText id="nombre" requerid="true"/>
+                            <p:inputText id="nombre" required="true"/>
                         </div>
                         <div class="field">
                             <p:outputLabel for="apellido">PELLIDO</p:outputLabel>
-                            <p:imputText id="apellido"/>
+                            <p:inputText id="apellido"/>
                         </div>
                         <div class="field">
                             <p:outputLabel for="telefono">TELEFONO</p:outputLabel>
-                            <p:imputText id="telefono" />
+                            <p:inputText id="telefono" />
                         </div>
                         <div class="field">
                             <p:outputLabel for="correo">CORREO</p:outputLabel>
-                            <p:imputText id="correo" requerid="true"/>
+                            <p:inputText id="correo" required="true"/>
                         </div>
                         <div class="field">
                             <p:outputLabel for="genero">GENERO</p:outputLabel>
-                            <p:imputText id="genero"/>
+                            <p:inputText id="genero"/>
                         </div>
                         <div class="field">
                             <p:outputLabel for="edad">EDAD</p:outputLabel>
-                            <p:imputText id="edad"/>
+                            <p:inputText id="edad"/>
                         </div>
                     </p:outputPanel>
 
                     <f:facet name="footer">
                         <p:commandButton value="Guardar" icon="pi pi-check" class="ui-button-primary"/>
                         <p:commandButton value="Cancelar" icon="pi pi-times" class="ui-button-secondary"
-                                    oneClick="PF('VentaModaCliente')"/>
+                                    oneClick="PF('VentaModaCliente').hide()" type="button"/>
                     </f:facet>
                 </p:dialog>
             </h:form>
